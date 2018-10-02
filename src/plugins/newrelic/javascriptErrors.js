@@ -7,6 +7,7 @@ const start = () => {
     name: 'JS_Errors',
     help: 'return a percentage of pageviews with javascript errors',
   });
+  return JSErrorsGauge;
 };
 
 const scheduleTask = (APP_ID, API_KEY) => (() => {
@@ -23,6 +24,7 @@ function callback(error, response, body) {
     .error_percentage;
 
   JSErrorsGauge.setValues(percentage);
+  return percentage;
 }
 
 module.exports = {
