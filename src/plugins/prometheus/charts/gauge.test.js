@@ -1,4 +1,4 @@
-describe('default chart', () => {
+describe('gauge chart', () => {
 
   const GaugeChart = require('./gauge');
 
