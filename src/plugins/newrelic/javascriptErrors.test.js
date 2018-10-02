@@ -21,4 +21,25 @@ describe('default chart', () => {
 
     expect(browser.collectData.mock.calls.length).toBe(1);
   })
+
+  test('should call browser.collectData', () => {
+    let percentage;
+    let body = {
+      metric_data: {
+        metrics: [{
+          timeslices: [{
+            values: {
+              error_percentage: 1.27
+            }
+          }]
+        }]
+      }
+    }
+    browser.collectData = jest.fn().mockImplementation((APP_ID, API_KEY, names, values, callback) => {
+      percentage = callback(null, null, JSON.stringify(body));
+    });
+    javascriptErrors.scheduleTask(50,250)()
+
+    expect(percentage).toBe(1.27);
+  })
 })
