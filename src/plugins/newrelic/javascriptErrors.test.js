@@ -1,4 +1,4 @@
-describe('default chart', () => {
+describe('javascriptErrors', () => {
 
   const javascriptErrors = require('./javascriptErrors');
   const browser = require('./api-request');

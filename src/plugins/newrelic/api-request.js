@@ -1,7 +1,6 @@
 const request = require('request');
 
 const collectData = (app_id, api_key, names, values, callback) => {
-
   const myDate = new Date();
   const MS_PER_MINUTE = 60000;
   const myStartDate = new Date(myDate - MS_PER_MINUTE);
@@ -13,7 +12,6 @@ const collectData = (app_id, api_key, names, values, callback) => {
 
   const options = {
     url: REQUEST_URL,
-    method: 'POST',
     headers: {
       'X-Api-Key': `${api_key}`
     },
@@ -27,7 +25,7 @@ const collectData = (app_id, api_key, names, values, callback) => {
   names && (options.form.names = names);
   values && (options.form.values = values);
 
-  request(options, callback);
+  request.post(options, callback);
 }
 
 module.exports = {
