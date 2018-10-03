@@ -4,7 +4,7 @@
   "description": "new relic browser exporter  for prometheus",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.16.3",
