@@ -2,7 +2,7 @@ const client = require('prom-client');
 const scheduler = require('../../utils/scheduler');
 
 const start = () => {
-  scheduler(() => {
+  scheduler.start(() => {
     client.collectDefaultMetrics();
   });
 };

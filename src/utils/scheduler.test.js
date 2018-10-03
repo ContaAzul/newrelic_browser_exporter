@@ -9,13 +9,13 @@ describe('default chart', () => {
   });
 
   test('should call cron.schedule', () => {
-    scheduler(()=>{});
+    scheduler.start(()=>{});
 
     expect(cron.schedule.mock.calls.length).toBe(1);
     expect(cron.schedule.mock.calls[0][0]).toBe(DEFAULT_INTERVAL);
   })
   test('should not call cron.schedule', () => {
-    scheduler();
+    scheduler.start();
 
     expect(cron.schedule.mock.calls.length).toBe(0);
   })
