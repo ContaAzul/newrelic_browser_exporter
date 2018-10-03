@@ -1,0 +1,21 @@
+{
+  "name": "@contaazul/newrelic_browser_exporter",
+  "version": "0.0.1",
+  "description": "New Relic browser exporter for Prometheus",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ContaAzul/newrelic_browser_exporter.git"
+  },
+  "keywords": [
+    "NewRelic",
+    "Exporter",
+    "Prometheus"
+  ],
+  "author": "ContaAzul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ContaAzul/newrelic_browser_exporter/issues"
+  },
+  "homepage": "https://github.com/ContaAzul/newrelic_browser_exporter#readme"
+}
