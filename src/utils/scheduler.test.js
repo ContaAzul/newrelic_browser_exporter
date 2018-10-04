@@ -3,12 +3,12 @@ describe('default chart', () => {
   const cron = require('node-cron');
   const DEFAULT_INTERVAL = '* * * * *';
 
-  beforeEach(()=>{
+  beforeEach(() => {
     cron.schedule = jest.fn();
   });
 
   test('should call cron.schedule', () => {
-    scheduler.start(()=>{});
+    scheduler.start(() => {});
 
     expect(cron.schedule.mock.calls.length).toBe(1);
     expect(cron.schedule.mock.calls[0][0]).toBe(DEFAULT_INTERVAL);

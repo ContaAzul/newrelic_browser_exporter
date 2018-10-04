@@ -3,7 +3,7 @@ describe('prometheus index', () => {
   const client = require('prom-client');
   let scheduler = require('../../utils/scheduler');
 
-  beforeEach(() =>{
+  beforeEach(() => {
     client.collectDefaultMetrics = jest.fn();
     scheduler.start = jest.fn();
   });
