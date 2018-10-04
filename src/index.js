@@ -1,3 +1,4 @@
+const config = require('./app/config');
 const server = require('./app/server');
 const router = require('./app/router');
 const prometheusPlugin = require('./plugins').prometheusPlugin;
