@@ -1,6 +1,6 @@
 const request = require('request');
 const collectData = (app_id, api_key, names, values, callback) => {
-  const myDate = new Date('Tue Oct 09 2018 15:00:00');
+  const myDate = new Date();
   const MS_PER_MINUTE = 60000;
   const myStartDate = new Date(myDate - MS_PER_MINUTE);
   const API_DOMAIN = 'https://api.newrelic.com';
