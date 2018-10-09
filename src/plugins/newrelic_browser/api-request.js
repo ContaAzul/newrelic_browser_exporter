@@ -21,10 +21,6 @@ const collectData = (app_id, api_key, names, values, callback) => {
   names && (options.form.names = names);
   values && (options.form.values = values);
 
-  console.log(options.form.from);
-  console.log(options.form.to);
-
-
   request.post(options, callback);
 }
 
