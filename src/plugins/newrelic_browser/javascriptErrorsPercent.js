@@ -15,8 +15,6 @@ const scheduleTask = (APP_ID, API_KEY) => (() => {
 });
 
 function callback(error, response, body) {
-  console.log(body);
-
   const percentage = JSON.parse(body)
     .metric_data.metrics[0]
     .timeslices[0]
