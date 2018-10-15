@@ -12,7 +12,7 @@ const collectData = () => {
     }
 
     const names = 'EndUser/errors';
-    const values = '';
+    const values = 'error_percentage';
     browser
       .collectData(names, values)
       .then(function (response) {
