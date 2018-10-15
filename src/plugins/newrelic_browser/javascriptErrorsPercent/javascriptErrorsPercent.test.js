@@ -1,6 +1,6 @@
 describe('javascriptErrorsPercent', () => {
   const javascriptErrors = require('./javascriptErrorsPercent');
-  const browser = require('./api-request');
+  const browser = require('../api-request');
   beforeEach(() => {
     browser.collectData = jest.fn();
   });
