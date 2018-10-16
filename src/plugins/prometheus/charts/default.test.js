@@ -1,28 +1,38 @@
+const DefaultChart = require('./default');
+
 describe('default chart', () => {
-  const DefaultChart = require('./default');
   test('should create new default chart object', () => {
-    let chart = new DefaultChart({
+    const chart = new DefaultChart({
       name: 'default_chart',
-      help: 'description example'
+      help: 'description example',
     });
     expect(chart.name).toBe('default_chart');
     expect(chart.help).toBe('description example');
     expect(chart.labelNames).toBe('');
-  })
+  });
+
   test('should throw missing help value error', () => {
+    const error = new Error('Missing help value!');
+    const options = {
+      name: 'default_chart',
+    };
+
     expect(() => {
-        new DefaultChart({
-          name: 'default_chart'
-        })
-      })
-      .toThrow();
-  })
+      /* eslint no-new: 0 */
+      new DefaultChart(options);
+    })
+      .toThrow(error);
+  });
   test('should create new default chart object', () => {
+    const error = new Error('Missing name value!');
+    const options = {
+      help: 'description example',
+    };
+
     expect(() => {
-        new DefaultChart({
-          help: 'description example'
-        })
-      })
-      .toThrow();
-  })
-})
+      /* eslint no-new: 0 */
+      new DefaultChart(options);
+    })
+      .toThrow(error);
+  });
+});
