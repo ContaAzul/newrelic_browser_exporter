@@ -15,7 +15,7 @@ const collectData = () => {
     const values = 'error_percentage';
     browser
       .collectData(names, values)
-      .then(function (response) {
+      .then(response => {
         onSuccess(response, resolve);
       })
       .catch(reject);

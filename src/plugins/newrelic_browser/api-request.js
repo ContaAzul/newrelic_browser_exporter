@@ -1,4 +1,4 @@
-var rp = require('request-promise');
+const rp = require('request-promise');
 const config = require('../../app/config');
 
 const collectData = (names, values) => {

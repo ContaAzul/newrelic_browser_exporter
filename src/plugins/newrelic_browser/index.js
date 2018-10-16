@@ -1,6 +1,6 @@
 const jsErrors = require('./javascriptErrorsPercent/javascriptErrorsPercent')
 
-const collectData = function(){
+const collectData = () => {
   return Promise.all([jsErrors.collectData()]);
 }
 
