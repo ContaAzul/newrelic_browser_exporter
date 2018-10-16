@@ -1,8 +1,11 @@
 const Register = require('../../plugins/prometheus').register;
+const newRelicPlugin = require('../../plugins').newRelicPlugin;
 
 const metrics = (req, res) => {
   res.set('Content-Type', Register.contentType);
-  res.end(Register.metrics());
+  newRelicPlugin.collectData().then(() => {
+    res.end(Register.metrics());
+  });
 };
 
 module.exports = metrics;
