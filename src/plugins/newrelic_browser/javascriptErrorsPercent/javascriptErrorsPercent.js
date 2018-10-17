@@ -1,26 +1,7 @@
 const GaugeChart = require('../../prometheus/charts/gauge');
 const browser = require('../api-request');
+
 let JSErrorsGauge;
-
-const collectData = () => {
-  return new Promise((resolve, reject) => {
-    if (!JSErrorsGauge) {
-      JSErrorsGauge = new GaugeChart({
-        name: 'newrelic_browser_javascript_errors_percent',
-        help: 'return a percentage of pageviews with javascript errors',
-      });
-    }
-
-    const names = 'EndUser/errors';
-    const values = 'error_percentage';
-    browser
-      .collectData(names, values)
-      .then(response => {
-        onSuccess(response, resolve);
-      })
-      .catch(reject);
-  });
-};
 
 function onSuccess(response, resolve) {
   const percentage = JSON.parse(response)
@@ -33,6 +14,24 @@ function onSuccess(response, resolve) {
   resolve();
 }
 
+const collectData = () => new Promise((resolve, reject) => {
+  if (!JSErrorsGauge) {
+    JSErrorsGauge = new GaugeChart({
+      name: 'newrelic_browser_javascript_errors_percent',
+      help: 'return a percentage of pageviews with javascript errors',
+    });
+  }
+
+  const names = 'EndUser/errors';
+  const values = 'error_percentage';
+  browser
+    .collectData(names, values)
+    .then((response) => {
+      onSuccess(response, resolve);
+    })
+    .catch(reject);
+});
+
 module.exports = {
-  collectData
+  collectData,
 };

@@ -1,5 +1,6 @@
-function server() {
-  const express = require('express');
+const express = require('express');
+
+function Server() {
   const app = express();
   const port = process.env.PORT || 9595;
 
@@ -12,9 +13,8 @@ function server() {
       app.listen(port, () => {
         console.log(`Server running on port ${port}`);
       });
-    }
-  }
-
+    },
+  };
 }
 
-module.exports = new server();
+module.exports = new Server();

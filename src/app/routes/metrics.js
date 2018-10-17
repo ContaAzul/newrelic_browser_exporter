@@ -1,5 +1,5 @@
 const Register = require('../../plugins/prometheus').register;
-const newRelicPlugin = require('../../plugins').newRelicPlugin;
+const { newRelicPlugin } = require('../../plugins');
 
 const metrics = (req, res) => {
   res.set('Content-Type', Register.contentType);
