@@ -1,8 +1,17 @@
 FROM node:8
 
-RUN mkdir /app
 WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 9595
 
 ENV PATH /app/node_modules/.bin:$PATH
 
 ADD . /app
+
+CMD [ "npm", "start" ]
