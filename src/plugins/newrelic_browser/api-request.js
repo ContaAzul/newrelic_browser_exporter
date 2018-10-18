@@ -1,5 +1,4 @@
 const rp = require('request-promise');
-const config = require('../../app/config');
 
 const collectData = (names, values) => new Promise((resolve, reject) => {
   const myDate = new Date();
@@ -8,11 +7,11 @@ const collectData = (names, values) => new Promise((resolve, reject) => {
   const API_DOMAIN = 'https://api.newrelic.com';
 
   const API_VERSION = 'v2';
-  const REQUEST_URL = `${API_DOMAIN}/${API_VERSION}/applications/${config.APP_ID}/metrics/data.json`;
+  const REQUEST_URL = `${API_DOMAIN}/${API_VERSION}/applications/${process.env.APP_ID}/metrics/data.json`;
   const options = {
     url: REQUEST_URL,
     headers: {
-      'X-Api-Key': `${config.API_KEY}`,
+      'X-Api-Key': `${process.env.API_KEY}`,
     },
     form: {
       from: myStartDate.toJSON().split('.')[0],
