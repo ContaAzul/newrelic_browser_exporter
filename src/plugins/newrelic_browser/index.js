@@ -1,9 +1,7 @@
-const jsErrors = require('./javascriptErrorsPercent/javascriptErrorsPercent')
+const jsErrors = require('./javascriptErrorsPercent/javascriptErrorsPercent');
 
-const collectData = () => {
-  return Promise.all([jsErrors.collectData()]);
-}
+const collectData = () => Promise.all([jsErrors.collectData()]);
 
 module.exports = {
-  collectData
+  collectData,
 };

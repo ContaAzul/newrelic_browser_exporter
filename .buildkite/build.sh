@@ -2,5 +2,7 @@
 set -e
 echo "========== Setup =========="
 npm install
-echo "========== Test =========="
+echo "========== Lint ==========="
+npm run lint
+echo "========== Test ==========="
 npm run test -- --coverage
