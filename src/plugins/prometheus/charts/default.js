@@ -18,4 +18,5 @@ class DefaultChart {
   }
 }
 
+
 module.exports = DefaultChart;
