@@ -3,7 +3,7 @@ set -eo pipefail
 
 DOCKER_IMAGE="caninjas/newrelic_browser_exporter"
 
-echo "Logging to DockerHub"
+echo "Logging to registry"
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 echo "Building docker image"
