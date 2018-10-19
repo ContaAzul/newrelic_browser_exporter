@@ -8,3 +8,5 @@ script:
   - npm run test -- --coverage
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+deploy:
+asdasdhjnkadjn
