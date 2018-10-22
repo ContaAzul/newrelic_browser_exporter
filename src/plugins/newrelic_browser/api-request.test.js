@@ -1,6 +1,5 @@
 const request = require('request-promise');
 const apiRequest = require('./api-request');
-const config = require('../../app/config');
 
 describe('api request', () => {
   test('should call request', async () => {
@@ -8,12 +7,12 @@ describe('api request', () => {
       .fn()
       .mockResolvedValue();
 
-    config.APP_ID = 555666;
-    config.API_KEY = '111222';
+    process.env.APP_ID = 555666;
+    process.env.API_KEY = '111222';
     const HEADERS = {
-      'X-Api-Key': config.API_KEY,
+      'X-Api-Key': process.env.API_KEY,
     };
-    const REQUEST_URL = `https://api.newrelic.com/v2/applications/${config.APP_ID}/metrics/data.json`;
+    const REQUEST_URL = `https://api.newrelic.com/v2/applications/${process.env.APP_ID}/metrics/data.json`;
     const names = 'newrelic_browser_javascript_errors_percent';
     const values = 'EndUser';
     await apiRequest.collectData(names, values);
