@@ -10,19 +10,19 @@ You will need [API_KEY](https://docs.newrelic.com/docs/apis/getting-started/intr
 ### **With docker:**
 To run:
 
-```
+```cmd
 docker run -p 9595:9595 -e "API_KEY=****" -e "APP_ID=****" caninjas/newrelic_browser_exporter
 ```
 
 ### **From source:**
 Clone this repo and go to newrelic_browser_exporter folder:
-```
+```cmd
 > git clone git@github.com:ContaAzul/newrelic_browser_exporter.git
 > cd newrelic_browser_exporter
 ```
 
 Install dependencies with ```npm install``` command and run with:
-```
+```cmd
 npm start APP_ID='****' API_KEY='****'
 ```
 
