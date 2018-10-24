@@ -98,6 +98,8 @@ Code to call api:
 
 ```js
 //...
+const browser = require('../api-request');
+
 const collectData = () => new Promise((resolve, reject) => {
   //...
 
