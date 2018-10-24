@@ -27,3 +27,6 @@ npm start APP_ID='****' API_KEY='****'
 ```
 
 Metrics will be exposed in ```localhost:9595/metrics```
+
+Would you like to help? See [contributing](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/CONTRIBUTING.md).
+

@@ -23,13 +23,13 @@
   └── index.js
 ```
 
-**src/app/routes/metrics.js** - Will be executed when the /metrics route is accessed. This code will start to collect data from newRelic plugin and output a string to [prometheus consuming](https://github.com/siimon/prom-client#register).
+**[src/app/routes/metrics.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/routes/metrics.js)** - Will be executed when the /metrics route is accessed. This code will start to collect data from newRelic plugin and output a string to [prometheus consuming](https://github.com/siimon/prom-client#register).
 
-**src/app/router.js** - Initialize /metrics route.
+**[src/app/router.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/router.js)** - Initialize /metrics route.
 
-**src/app/server.js** - Contains the code to start application and configure application routes.
+**[src/app/server.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/server.js)** - Contains the code to start application and configure application routes.
 
-**src/index.js** - Start server methods.
+**[src/index.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/index.js)** - Start server methods.
 
 ### **plugins**:
 ```
@@ -44,13 +44,13 @@
               └──  gauge.js
 ```
 
-**newrelic_browser/** - Contains the code that will communicate with the API([api-request.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)) and the code that will initialize the prometheus chart and execute the callback after call to the API.
+**[newrelic_browser/](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/newrelic_browser)** - Contains the code that will communicate with the API([api-request.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)) and the code that will initialize the prometheus chart and execute the callback after call to the API.
 
-**newrelic_browser/javascriptErrorsPercent/** - Contains the code that will create the javascript errors percent chart according prometheus model and the code that will be executed after the api response and set this data in chart.
+**[newrelic_browser/javascriptErrorsPercent/](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/newrelic_browser/javascriptErrorsPercent)** - Contains the code that will create the javascript errors percent chart according prometheus model and the code that will be executed after the api response and set this data in chart.
 
-**newrelic_browser/api-requets** - Contains the code that will setup data before call newrelic api. API will return a unique value corresponding to the value of that data in the last minute.
+**[newrelic_browser/api-requets](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)** - Contains the code that will setup data before call newrelic api. API will return a unique value corresponding to the value of that data in the last minute.
 
-**prometheus/charts** - Contains the metric types used to create new chart. To know which metrics are supported by prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
+**[prometheus/charts](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/prometheus/charts)** - Contains the metric types used to create new chart. To know which metrics are supported by prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
 
 
 ## **How to set up new metric**
@@ -136,5 +136,3 @@ We use [jest](https://jestjs.io/) to write and run tests.
 In **most cases** you will need to write test scenarios for the code you are developing.
 
 Run tests using ``` jest``` or ```npm test``` command. To see coverage, run ```jest --coverage```.
-
-
