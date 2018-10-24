@@ -1,5 +1,15 @@
 # **How to contribute to newrelic browser exporter**
 
+#### Table of Contents
+
+[Project structure](#project-structure)
+  * [application](#application)
+  * [plugins](#plugins)
+
+[How to set up a new metric](#How-to-set-up-new-metric)
+
+[Tests](#tests)
+
 ## **Project structure**
 
 ### **application**:
@@ -43,7 +53,7 @@
 **prometheus/charts** - Contains the metric types used to create new chart. To know which metrics are supported by prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
 
 
-## **How to set up a new metric**
+## **How to set up new metric**
 
 Create a folder inside newrelic_browser. This folder shold be a file with a public method and callback method. The public method(In javascriptErrorsPercent this method is called collectData) will be initialize the chart if is the first call, like this:
 
