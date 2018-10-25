@@ -23,13 +23,13 @@
   └── index.js
 ```
 
-**[src/app/routes/metrics.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/routes/metrics.js)** - Will be executed when the /metrics route is accessed. This code will start to collect data from newRelic plugin and output a string to [prometheus consuming](https://github.com/siimon/prom-client#register).
+**[src/app/routes/metrics.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/routes/metrics.js)** - It represents the `/metrics` route, which outputs the metrics from `register.metrics()` as a string in a Prometheus like format that can be consumed by a [Prometheus Client](https://github.com/siimon/prom-client#register).
 
-**[src/app/router.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/router.js)** - Initialize /metrics route.
+**[src/app/router.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/router.js)** - It registers all applications routes.
 
-**[src/app/server.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/server.js)** - Contains the code to start application and configure application routes.
+**[src/app/server.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/server.js)** - Contains the code to start and configure the application.
 
-**[src/index.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/index.js)** - Start server methods.
+**[src/index.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/index.js)** - It starts the application.
 
 ### **plugins**:
 ```
@@ -44,20 +44,17 @@
               └──  gauge.js
 ```
 
-**[newrelic_browser/](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/newrelic_browser)** - Contains the code that will communicate with the API([api-request.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)) and the code that will initialize the prometheus chart and execute the callback after call to the API.
+**[newrelic_browser/](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/newrelic_browser)** - This plugin is responsible for pulling data from New Relic's API([api-request.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)) and exporting it as Prometheus charts.
 
-**[newrelic_browser/javascriptErrorsPercent/](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/newrelic_browser/javascriptErrorsPercent)** - Contains the code that will create the javascript errors percent chart according prometheus model and the code that will be executed after the api response and set this data in chart.
-
-**[newrelic_browser/api-requets](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)** - Contains the code that will setup data before call newrelic api. API will return a unique value corresponding to the value of that data in the last minute.
-
-**[prometheus/charts](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/prometheus/charts)** - Contains the metric types used to create new chart. To know which metrics are supported by prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
+**[prometheus](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/prometheus)** - Contains the metric types used to create new Prometheus charts and exports the global Prometheus `registry`. To know which metrics are supported by prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
 
 
-## **How to set up new metric**
+## **How to set up a new metric**
 
-Create a folder inside newrelic_browser. This folder shold be a file with a public method and callback method. The public method(In javascriptErrorsPercent this method is called collectData) will be initialize the chart if is the first call, like this:
+Create a new folder inside `newrelic_browser` plugin. Inside this folder create a new file that must have a public method called `collectData` which must return a new `Promise`. The public method initializes and returns the chart:
 
 ```js
+// javascriptErrorsPercent.js
 const GaugeChart = require('../../prometheus/charts/gauge');
 let JSErrorsGauge;
 
@@ -69,35 +66,34 @@ const collectData = () => new Promise((resolve, reject) => {
     });
   }
 
-  //... (hidden code)
+  ...
 }
 
 module.exports = {
   collectData,
 };
 ```
-Please read [prometheus best practices](https://prometheus.io/docs/practices/naming/) to name your chart configurations.
 
-After create the chart configuration you will need to set up the name and the value to retrieve specific metrics from this data.
+Please read [prometheus best practices](https://prometheus.io/docs/practices/naming/) to name your chart's configurations.
+
+After creating the chart's configuration it is necessary to set up the parameters such as `name` and `value` to retrieve specific metrics from this [New Relic's API](https://rpm.newrelic.com/api/explore/applications/metric_data)
 
 ```js
-//...
+// javascriptErrorsPercent.js
 const collectData = () => new Promise((resolve, reject) => {
-  //...
+  ...
 
   const names = 'EndUser/errors';
   const values = 'error_percentage';
 
-  //...
+  ...
 }
-//...
 ```
 
-Now you can call newrelic api passing these arguments and the callback that will be executed after api response and will set the metric value.
-Code to call api:
+Now that all parameters are set up, a request to New Relic's API can be done by calling `browser.collectData()`:
 
 ```js
-//...
+// javascriptErrorsPercent.js
 const browser = require('../api-request');
 
 const collectData = () => new Promise((resolve, reject) => {
@@ -105,7 +101,7 @@ const collectData = () => new Promise((resolve, reject) => {
 
   browser
     .collectData(names, values)
-    .then((response) => {
+    .then(response => {
       onSuccess(response, resolve);
     })
     .catch(reject);
@@ -113,10 +109,11 @@ const collectData = () => new Promise((resolve, reject) => {
 }
 //...
 ```
-Callback method should set the metric collected from api request into chart(I this example, the chart is JSErrorsGauge):
+
+A callback method should set the metrics collected from New Relic's API into the chart. Please, see prometheus [base units](https://prometheus.io/docs/practices/naming/#base-units) to know how to set values into charts according Prometheus patterns.
 
 ```js
-//...
+// javascriptErrorsPercent.js
 function onSuccess(response, resolve) {
   const percentage = JSON.parse(response)
     .metric_data.metrics[0]
@@ -130,11 +127,10 @@ function onSuccess(response, resolve) {
 //...
 
 ```
-Please, see prometheus [base units](https://prometheus.io/docs/practices/naming/#base-units) before set value in chart.
-After set value, promise is resolved.
+
+After setting values to the chart and resolving the `Promise`, New Relic's metrics are avaliable as Prometheus metrics in the `/metrics` endpoint.
 
 ## **Tests**
-We use [jest](https://jestjs.io/) to write and run tests.
-In **most cases** you will need to write test scenarios for the code you are developing.
+Tests are written using [jest](https://jestjs.io/). In **most cases** new test scenarios are necessary for the new developed code.
 
-Run tests using ``` jest``` or ```npm test``` command. To see coverage, run ```jest --coverage```.
+Run tests using `jest` or `npm test` commands. To see coverage, run `jest --coverage`.
