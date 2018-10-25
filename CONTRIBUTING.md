@@ -6,7 +6,7 @@
   * [application](#application)
   * [plugins](#plugins)
 
-[How to set up a new metric](#How-to-set-up-new-metric)
+[How to set up a new metric](#How-to-set-up-a-new-metric)
 
 [Tests](#tests)
 
