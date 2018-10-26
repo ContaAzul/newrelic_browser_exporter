@@ -25,7 +25,7 @@
 
 **[src/app/routes/metrics.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/routes/metrics.js)** - It represents the `/metrics` route, which outputs the metrics from `register.metrics()` as a string in a Prometheus like format that can be consumed by a [Prometheus Client](https://github.com/siimon/prom-client#register).
 
-**[src/app/router.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/router.js)** - It registers all applications routes.
+**[src/app/router.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/router.js)** - It registers all application routes.
 
 **[src/app/server.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/app/server.js)** - Contains the code to start and configure the application.
 
