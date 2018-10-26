@@ -76,7 +76,7 @@ module.exports = {
 
 Please read [prometheus best practices](https://prometheus.io/docs/practices/naming/) to name your chart's configurations.
 
-After creating the chart's configuration it is necessary to set up the parameters such as `name` and `value` to retrieve specific metrics from this [New Relic's API](https://rpm.newrelic.com/api/explore/applications/metric_data)
+After configuring the chart, it is necessary to set up parameters such as `name` and `value` to retrieve specific metrics from [New Relic's API](https://rpm.newrelic.com/api/explore/applications/metric_data)
 
 ```js
 // javascriptErrorsPercent.js
