@@ -46,7 +46,7 @@
 
 **[newrelic_browser/](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/newrelic_browser)** - This plugin is responsible for pulling data from New Relic's API([api-request.js](https://github.com/ContaAzul/newrelic_browser_exporter/blob/master/src/plugins/newrelic_browser/api-request.js)) and exporting it as Prometheus charts.
 
-**[prometheus](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/prometheus)** - Contains the metric types used to create new Prometheus charts and exports the global Prometheus `registry`. To know which metrics are supported by prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
+**[prometheus](https://github.com/ContaAzul/newrelic_browser_exporter/tree/master/src/plugins/prometheus)** - Contains the metric types used to create new Prometheus charts and exports the global Prometheus `registry`. To know which metrics are supported by Prometheus, see [metric types](https://prometheus.io/docs/concepts/metric_types/).
 
 
 ## **How to set up a new metric**
