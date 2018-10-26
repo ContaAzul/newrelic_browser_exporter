@@ -24,6 +24,7 @@ const collectData = () => new Promise((resolve, reject) => {
 
   const names = 'EndUser/errors';
   const values = 'error_percentage';
+
   browser
     .collectData(names, values)
     .then((response) => {
