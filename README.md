@@ -23,7 +23,7 @@ Clone this repo and go to newrelic_browser_exporter folder:
 
 Install dependencies with ```npm install``` command and run with:
 ```cmd
-npm start APP_ID='****' API_KEY='****'
+APP_ID='****' API_KEY='****' npm start
 ```
 
 Metrics will be exposed in ```localhost:9595/metrics```
